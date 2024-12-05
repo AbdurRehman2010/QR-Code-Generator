@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Code Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<center>
+<main id="main"><br>
+  <h1>QR Code Generator</h1>
+  <p>Generate your QR code by entering text or Link.</p>
+
+  <!-- Input field for the text -->
+  <input type="text" id="text" placeholder="Enter text">
+
+  <div id="imgBox">
+    <!-- Image to display QR code -->
+    <img src="" id="qrimg" style="display:none;">
+  </div>
+
+  <!-- Button to trigger QR code generation -->
+  <button id="btn" onclick="make()">Generate</button>
+
+</main>
+</center>
+
+<script>
+  // Select the DOM elements
+  let qrimg = document.querySelector('#qrimg');
+  let imgbox = document.querySelector('#imgBox');
+
+  function make() {
+    // Get the value of the input field
+    let input = document.querySelector('#text').value.trim();
+
+    // Check if the input is empty
+    if (input === "") {
+      alert("Please enter some text to generate the QR code.");
+      return;
+    }
+
+    // Set the QR code image source URL
+    qrimg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(input);
+
+    // Display the image box with the generated QR code
+    qrimg.style.display = "block";
+  }
+</script>
+
+</body>
+</html>
